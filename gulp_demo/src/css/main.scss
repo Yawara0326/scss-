@@ -1,4 +1,6 @@
-$color1:#fa0;
+$color1:#898000;
+$container_width:1200px;
+
 
 html {
   -webkit-box-sizing: border-box;
@@ -16,6 +18,7 @@ html {
     src: url('/fonts/abel-regular-webfont.eot');
     src: url('/fonts/abel-regular-webfont.eot?#iefix') format('embedded-opentype'),  url('/fonts/abel-regular-webfont.woff') format('woff'),  url('/fonts/abel-regular-webfont.ttf') format('truetype'),  url('/fonts/abel-regular-webfont.svg#AbelRegular') format('svg');
 }
+
 body{
   font-family: 'Noto Sans TC', sans-serif;
   font-weight: 700;
@@ -26,7 +29,7 @@ body{
   margin: 0 auto;
   padding-top: 30px;
   width: 100%;
-  max-width: 1200px;
+  max-width: $container_width;
 }
 header{
   text-align: center;
@@ -39,8 +42,7 @@ nav{
   margin-bottom: 30px;
   border-top: 1px solid $color1;
   border-bottom: 1px solid $color1;
-}
-nav ul{
+ul{
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -50,30 +52,69 @@ nav ul{
   display: flex;
   flex-direction: row;
 }
-nav>ul>li{
+>ul>li{
   /* display: inline-block; */
   /* width: calc( 100%/7 ); */
   flex: 1;
   text-align: center;
+  &>a,.nav_menu{
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100%;}
+    &:hover{
+      background-color: #dcdddd;
+    }
+    &>a>span:first-child{
+      font-weight: bold;
+      color: #000;
+    }
+    &>a>span:last-child{
+      color: #898000;
+    }
+
+  }
 
 }
-nav>ul>li>a{
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:100%;
+
+li>.nav_menu>span:nth-child(2){color: #898000;}
+
+
+.nav_menu{
+  position: relative;
+  // background-color: #890000;
+  
+  .menu_item{
+    width:100%;
+    position: absolute;
+    // display: flex;
+    // flex-direction: column;
+    display: none;
+    top: 100%
+  }
+  // 用px手機板會跑掉，故用top100%
+  a{
+    // flex: 1;
+    display: block;
+    background-color: $color1;
+    line-height: 80px;
+    width: 100%;
+    height: 80px;
+    text-decoration: none;
+    color: #FFF;
+    &:hover{
+      background-color: #000;
+    }
+  }
 }
-nav>ul>li>a:hover{
-  background-color: #dcdddd;
+.nav_menu:hover .menu_item{
+  display: block;
 }
-nav>ul>li>a>span:first-child{
-  font-weight: bold;
-  color: #000;
-}
-nav>ul>li>a>span:last-child{
-  color: #898000;
-}
+
+
+
+
 .index img{
   width: 100%;
 }
@@ -156,7 +197,7 @@ nav>ul>li>a>span:last-child{
 }
 
 
- @media (max-width:992px){
+ @media (max-width:$container_width){
   nav ul{
     flex-direction: column;
     height: auto;
@@ -179,4 +220,47 @@ nav>ul>li>a>span:last-child{
   .shop .item .right{
     width: 100%;
   }
+
 } 
+
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+footer {
+  height: 135px;
+  background-color:$color1;
+  padding-top:20px; ;
+  .warp{
+    margin: 0 auto;
+    max-width: $container_width;
+
+  }
+  ul.footer-left{
+    width:50% ;
+    float: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    
+    li{
+      display: inline-block;
+      margin-left: 10px;
+      text-align: left;
+    }
+  }
+  .footer-right{
+    float: right;
+    width:50% ;
+    text-align: right;
+  }
+}
+
+// 使用float排版高度會不見，
